@@ -5,6 +5,7 @@ import EventsList from'./EventsList'
 import EventForm from'./EventForm'
 import FormErrors from'./FormErrors'
 import validations from'../validations'
+import './Eventlite.css'
 
 
 class Eventlite extends React.Component{
@@ -58,7 +59,7 @@ static formValidations = {
     let newEvent = { title: this.state.title.value, start_datetime: this.state.start_datetime.value,location:this.state.location.value}
     axios({
       method: 'POST',
-      url: '/events',
+      url: 'http://localhost:3001/events',
       data: { event: newEvent }
     })
     .then(response => {
@@ -116,10 +117,6 @@ validateField(fieldName, fieldValue, fieldValidations) {
     this.setState(newState, this.validateForm)
   }
 
-changeLogoColour = () => {
-    const colors = ["red", "blue", "green", "violet"]
-    this.logo.current.style.color = colors[Math.floor(Math.random() * colors.length)]
-}
 
   addNewEvent = (event) => {
     const events = [...this.state.events, event].sort(function(a, b){
