@@ -19,6 +19,7 @@ class Eventlite extends React.Component{
       formErrors: '',
       formValid: false
     }
+    this.logo = React.createRef()
   }
 
 componentDidMount() {
@@ -117,6 +118,10 @@ validateField(fieldName, fieldValue, fieldValidations) {
     this.setState(newState, this.validateForm)
   }
 
+changeLogoColour = () => {
+    const colors = ["red", "blue", "green", "violet"]
+    this.logo.current.style.color = colors[Math.floor(Math.random() * colors.length)]
+}
 
   addNewEvent = (event) => {
     const events = [...this.state.events, event].sort(function(a, b){
