@@ -128,16 +128,20 @@ return new Date(a.start_datetime) - new Date(b.start_datetime) })
   }
 
 render() {
+  const currentUser = localStorage.getItem('user')
   return (
       <div>
       <FormErrors formErrors = {this.state.formErrors} />
+      {currentUser &&
         <EventForm handleSubmit = {this.handleSubmit}
           handleInput = {this.handleInput}
           formValid={this.state.formValid}
           title = {this.state.title.value}
           start_datetime = {this.state.start_datetime.value}
           location = {this.state.location.value} />
+      }
         <EventsList events={this.state.events} />
+
       </div>
   )
  }
