@@ -96,6 +96,16 @@ fieldValid = errors.length === 0
     this.setState({formErrors: {}})
 }
 
+deleteEvent = () => {
+  if(window.confirm("Are you sure you want to delete this event?")) {
+    axios({
+method: 'DELETE',
+url: `http://localhost:3001/events/${this.props.match.params.id}`, headers: JSON.parse(localStorage.getItem('user'))
+    }).then((response) => {
+      this.props.history.push('/')
+  })
+ }
+}
 
 render() { return (
       <div>
@@ -108,6 +118,11 @@ render() { return (
           <input type="submit" value={this.state.editing ? "Update Event" : "Create event"}
            disabled={!this.state.formValid} />
         </form>
+        {this.state.editing &&
+          <p>
+          <button onClick={this.deleteEvent}>Delete Event</button>
+          </p>
+          }
       </div>
 
       )
