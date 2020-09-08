@@ -1,23 +1,49 @@
 import React from 'react'
-import PropTypes from 'prop-types'
+import axios from 'axios'
+import { Link } from 'react-router-dom'
+
+
 
 const formatDate = datetime =>
   new Date(datetime).toDateString()
 
-const Event = props => (
-  <div className="event">
-    <h2 className="event-title">{props.event.title}</h2>
-    <div className="event-datetime">{formatDate(props.event.start_datetime)}</div>
-    <div className="event-location">{props.event.location}</div>
-  </div>
-  )
+class Event extends React.Component {
+  constructor (props) {
+  super(props)
+  this.state = {
+    event: {}
+  }
+}
 
-Event.propTypes = {
-  event: PropTypes.shape({
-    title: PropTypes.string.isRequired,
-    start_datetime: PropTypes.string.isRequired,
-    location: PropTypes.string.isRequired
+componentDidMount () {
+  if(this.props.match) {
+    axios({
+    method: "GET",
+    url: `http://localhost:3001/events/${this.props.match.params.id}`,
+    headers: JSON.parse(localStorage.getItem('user'))
+  }).then((response) => {
+    this.setState({event: response.data})
   })
+ }
+}
+
+  render() {
+    return (
+        <div className="event">
+        {this.state.event.currentUserCanEdit &&
+          <Link to={`/events/${this.props.match.params.id}/edit`}>
+          Edit
+        </Link>
+         }
+        {this.state.event.image_url && <img src={this.state.event.image_url} />}
+        <h2 className="event-title">{this.state.event.title}</h2>
+        <div className="event-datetime">{formatDate(this.state.event.start_datetime)}</div>
+        <div className="event-location">{this.state.event.location}</div>
+        <div className="event-description">{this.state.event.description}</div>
+      </div>
+    )
+  }
 }
 
 export default Event
+
