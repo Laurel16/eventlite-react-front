@@ -1,5 +1,7 @@
 
 import React from'react'
+import Container from 'react-bootstrap/Container'
+
 import axios from 'axios'
 import EventsList from'./EventsList'
 import EventForm from'./EventForm'
@@ -34,13 +36,18 @@ return new Date(a.start_datetime) - new Date(b.start_datetime) })
   }
 
 render() {
-  const currentUser = localStorage.getItem('user')
-  return (
-      <div>
+const currentUser = localStorage.getItem('user')
+return (
+      <Container className="pt-5">
         {currentUser &&
-          <EventForm onSuccess={this.addNewEvent} />
-        }
-        <EventsList events={this.state.events} />
+          <div className="mb-5 pt-5 event-form-homepage-container">
+            <EventForm onSuccess={this.addNewEvent} />
       </div>
-) }
-} export default Eventlite
+    }
+        <h1 className="h4">Latest events</h1>
+        <EventsList events={this.state.events} />
+      </Container>
+ )
+}
+}
+export default Eventlite

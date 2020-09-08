@@ -1,20 +1,12 @@
+
 import React from 'react'
-import './App.css'
-import AppHeader from './components/AppHeader'
 import Login from './components/Login'
+import Signup from './components/Signup'
+import AppHeader from './components/AppHeader'
 import Eventlite from './components/Eventlite'
 import Event from './components/Event'
-import Signup from './components/Signup'
 import EventForm from './components/EventForm'
-import { BrowserRouter as Router, Route, Redirect } from "react-router-dom"
-
-
-const currentUser = function() {
-    const user = localStorage.getItem('user')
-    console.log(user)
-    return(user)
-  }
-
+import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom'
 
 function App() {
   const currentUser = localStorage.getItem('user')
@@ -29,15 +21,11 @@ function App() {
       <Route exact path="/events/:id">
         <Event/>
       </Route>
-      <Route exact path="/events/:id" render={routeProps => (
-      <Event {...routeProps} />
-        )}/>
-      <Route exact path="/events/:id/edit" render={routeProps=>(
+      <Route exact path="/events/:id/edit" render={routeProps => (
         currentUser ?
-       <EventForm {...routeProps} /> :
-       <Redirect to='/login' />
-       )}/>
-
+          <EventForm {...routeProps} /> :
+          <Redirect to='/login' />
+      )} />
       <Route exact path="/login">
         {currentUser ? <Redirect to="/" /> : <Login />}
       </Route>

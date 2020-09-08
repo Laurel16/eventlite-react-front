@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types'
+import Alert from 'react-bootstrap/Alert'
 
 
 const FormErrors = (props) =>
@@ -8,7 +9,8 @@ const FormErrors = (props) =>
   return (
    props.formErrors[formErrorField].map((error) => {
     return (
-      <p>{formErrorField} {error}</p>
+      <Alert variant="danger">{formErrorField} {error}</Alert>
+
       )
     })
    )
