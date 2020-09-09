@@ -16,6 +16,7 @@ const EventSummary = props => (
           <Card.Title>
             {props.event.title}
           </Card.Title>
+          <p className="event-location">{props.event.location}</p>
         </Card.Body>
       </Card>
     </a>

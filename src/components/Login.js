@@ -1,6 +1,8 @@
 
 import React from 'react'
 import axios from 'axios'
+import Container from 'react-bootstrap/Container'
+
 
 
 class Login extends React.Component {
@@ -8,7 +10,7 @@ class Login extends React.Component {
     e.preventDefault()
     axios({
       method: 'POST',
-      url: 'http://localhost:3001/auth/sign_in',
+      url: 'https://events-react.herokuapp.com/auth/sign_in',
       data: {
         email: this.email.value,
         password: this.password.value
@@ -27,6 +29,7 @@ class Login extends React.Component {
 
   render () {
     return (
+       <Container className="content-container">
       <div>
         <h2>Log in</h2>
         <form onSubmit={this.handleLogin}>
@@ -36,6 +39,7 @@ class Login extends React.Component {
         </form>
 
       </div>
+       </Container>
     )
   }
 }

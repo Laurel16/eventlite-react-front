@@ -1,11 +1,13 @@
 import React from'react'
 import axios from'axios'
+import Container from 'react-bootstrap/Container'
+
 class Signup extends React.Component{
   handleSignup = (e) => {
     e.preventDefault()
     axios({
       method: 'POST',
-      url: 'http://localhost:3001/auth',
+      url: 'https://events-react.herokuapp.com/auth',
       data: {
         email: this.email.value,
         password: this.password.value
@@ -24,6 +26,7 @@ class Signup extends React.Component{
 
 render () {
   return (
+    <Container className="content-container">
       <div>
         <h2>Sign up</h2>
         <form onSubmit={this.handleSignup} >
@@ -32,6 +35,7 @@ render () {
       <input type="submit"/>
  </form>
 </div>
+ </Container>
   )
  }
 }

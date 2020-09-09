@@ -21,7 +21,7 @@ class Eventlite extends React.Component{
 componentDidMount() {
     axios({
       method: 'GET',
-      url: 'http://localhost:3001/events'
+      url: 'https://events-react.herokuapp.com/events'
     })
     .then(response => {
       this.setState({events: response.data})

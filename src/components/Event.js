@@ -14,7 +14,7 @@ function Event(props){
   useEffect(() => {
     axios({
       method: "GET",
-      url: `http://localhost:3001/events/${id}`,
+      url: `https://events-react.herokuapp.com/events/${id}`,
       headers: JSON.parse(localStorage.getItem('user'))
     }).then((response) => {
       setEvent(response.data)
@@ -66,10 +66,10 @@ function Event(props){
           <Row noGutters={true} className="event-description-container">
             <Col xs={12} sm={12} md={8} lg={8}>
               <h2 className="h4">About this Event</h2>
-              {event.description && <p className="lead" dangerouslySetInnerHTML={{__html: event.description}} />}
+              {event.description && <p className="lead text-justify" dangerouslySetInnerHTML={{__html: event.description}} />}
              </Col>
             <Col xs={12} sm={12} md={4} lg={4}>
-              <div className="p-4">
+              <div className="p-4 ml-4">
                 <h3 className="h6">Date and Time</h3>
                 <div className="event-details__data">
                   <p>{moment(event.start_datetime).format('ddd, DD MMMM YYYY')}</p>

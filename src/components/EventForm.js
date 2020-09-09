@@ -43,7 +43,7 @@ class EventForm extends React.Component {
       this.setState({editing: this.props.match.path === '/events/:id/edit'})
       axios({
         method: "GET",
-        url: `http://localhost:3001/events/${this.props.match.params.id}`,
+        url: `https://events-react.herokuapp.com/events/${this.props.match.params.id}`,
         headers: JSON.parse(localStorage.getItem('user'))
       }).then((response) => {
         this.setState({
@@ -77,7 +77,7 @@ class EventForm extends React.Component {
       description: this.state.description.value,
     }
     const method = this.state.editing ? 'PUT' : 'POST'
-    const url = this.state.editing ? `http://localhost:3001/events/${this.props.match.params.id}` : 'http://localhost:3001/events'
+    const url = this.state.editing ? `https://events-react.herokuapp.com/events/${this.props.match.params.id}` : 'https://events-react.herokuapp.com/events'
 
     axios({
       method: method,
@@ -125,7 +125,7 @@ class EventForm extends React.Component {
     if(window.confirm("Are you sure you want to delete this event?")) {
       axios({
         method: 'DELETE',
-        url: `http://localhost:3001/events/${this.props.match.params.id}`,
+        url: `https://events-react.herokuapp.com/events/${this.props.match.params.id}`,
         headers: JSON.parse(localStorage.getItem('user'))
       }).then((response) => {
         this.props.history.push('/')
