@@ -14,7 +14,7 @@ function Event(props){
   useEffect(() => {
     axios({
       method: "GET",
-      url: `https://events-react.herokuapp.com/events/${id}`,
+      url: `https://cors-anywhere.herokuapp.com/https://events-react.herokuapp.com/events/${id}`,
       headers: JSON.parse(localStorage.getItem('user'))
     }).then((response) => {
       setEvent(response.data)
