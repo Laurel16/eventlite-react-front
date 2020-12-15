@@ -10,7 +10,7 @@ class Login extends React.Component {
     e.preventDefault()
     axios({
       method: 'POST',
-      url: 'https://events-react.herokuapp.com/auth/sign_in',
+      url: 'https://cors-anywhere.herokuapp.com/https://events-react.herokuapp.com/auth/sign_in',
       data: {
         email: this.email.value,
         password: this.password.value
